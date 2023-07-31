@@ -1,7 +1,8 @@
 
 
 # A latent alignment-based multi-omics approach to predict drug response
-![](https://hackmd.io/_uploads/ryvASIUqn.png)
+![image](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/22c84fc7-7275-4b0e-9080-3437f0edc210)
+
 
 # Operation method
 1. 進入到 script.sh檔案
@@ -189,7 +190,8 @@ def Normalize(data, idx_train, N_type):
 ```
 
 ## Overview
-![](https://hackmd.io/_uploads/rJE6mwIch.png)
+![image](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/61d05274-70ba-437a-8906-ff78d322c9fd)
+
 ``` python = 
 def data_preprocessing(X_dir, Y_dir, args, seed):
     # Read csv
@@ -256,7 +258,8 @@ class Encoder(nn.Module):
 ```
 2. 使用 latent alignment 調整 feature extractor 使不同體學特徵在latent space上對齊
 
-![](https://hackmd.io/_uploads/ry9FNDL53.png)
+![image](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/d6d10a2c-03aa-431f-90d7-4eeb185d9b08)
+
 
 ``` python = 
 def loss(self, x):
@@ -285,7 +288,8 @@ def cal_LA_loss(embedding1, embedding2, temperature):
 ```
 
 3. 學習不同體學資料間的關聯性資訊
-![](https://hackmd.io/_uploads/SkmLSP8qh.png)
+![image](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/82196026-f1b8-4fc1-b0cf-8a5bd08fb70c)
+
 ``` python = 
 # Divide the features on the latent space into N blocks
 for i in range(len(temp_encode)):
@@ -318,7 +322,8 @@ for i in range(len(Att_encode)):
 ```
 
 4. 預測藥物反應濃度
-![](https://hackmd.io/_uploads/rJ6DrPU92.png)
+![image](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/f46399f6-0dc3-4dcb-8931-efa9da0549c0)
+
 ``` python = 
 class Regression(nn.Module):
     def __init__(self, n_class, latent_dim, class_dim):
