@@ -1,4 +1,4 @@
-[TOC]
+
 
 # A latent alignment-based multi-omics approach to predict drug response
 ![](https://hackmd.io/_uploads/ryvASIUqn.png)
@@ -30,7 +30,7 @@ python Main.py --train True --epochs 100 ...
 
 
 # Main
-:::spoiler **Arguments**
+## **Arguments**
 
 |    Name     |                                 help                                 |   default    |
 |:-----------:|:--------------------------------------------------------------------:|:------------:|
@@ -59,10 +59,10 @@ python Main.py --train True --epochs 100 ...
 |   channel   |               每一個 attention map 的 hidden dimension               |      2       |
 | origin_data |                    是否使用尚未經過前處理的資料集                    |    False     |
 |    train    |                            是否為訓練階段                            |     True     |
-:::
+
 
 # Preprocessing
-:::spoiler **流程**
+## **流程**
 1. 找出所有資料集中皆存在的樣本
 ``` python = 
 def Overlap_samples(data_omics, data_drug):
@@ -223,10 +223,10 @@ def data_preprocessing(X_dir, Y_dir, args, seed):
     
     return X, Y, Y['train']['ori'].describe().T['50%'], Y['train']['ori'].describe().T['std'], scaler
 ```
-:::
+
 
 # Model
-:::spoiler **流程**
+## **流程**
 1. 利用不同的 feature extractor 來提取各個體學的重要特徵
 ``` python =
 class Encoder(nn.Module):
@@ -342,5 +342,3 @@ class Regression(nn.Module):
     def forward(self, x):
         return self.reg(x)
 ```
-
-:::
