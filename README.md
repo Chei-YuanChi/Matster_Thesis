@@ -21,6 +21,8 @@ python Main.py --train True --epochs 100 ...
 python Main.py --train True --epochs 100 ...
 ```
 
+* 備註：完整資料在我的雲端中，使用git clone沒有dataset以及weight
+
 # Dataset - Depmap
 ## [Custom donwload](https://depmap.org/portal/download/custom/)
 * Mutation : Hotspot_Mutations
