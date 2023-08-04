@@ -29,7 +29,7 @@ python Main.py --train True --epochs 100 ...
 * CNV : Copy_Number_(Absolute)
 * Methylation : Methylation_(1kb_upstream_TSS)
 * Expression : Expression_22Q2_Public
-* Drug response : Drug_sensitivity_(PRISM_Repurposing_Primary_Screen)_19Q4
+* Drug response : Drug sensitivity IC50 (Sanger GDSC1)
 
 
 # Main
