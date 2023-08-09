@@ -1,11 +1,3 @@
-![1](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/eeb04419-7968-40b6-a2b9-4c49ed8f239c)
-![2](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/6ce6cf17-0069-42b5-847d-0dece7b06bf9)
-![Uploading 3.png…]()
-![345](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/c2f3cff9-3e51-488b-a184-061a3e8b76d2)
-![6](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/3d79fbf5-1809-46e8-a08a-e30014b96e19)
-![7](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/09cceddd-564b-42c5-ad94-6e1672e50078)
-
-
 # A latent alignment-based multi-omics approach to predict drug response
 ![image](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/22c84fc7-7275-4b0e-9080-3437f0edc210)
 
