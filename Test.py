@@ -152,5 +152,5 @@ def test_model(x, y, paras):
     mean_recall = [np.array(recall[k]).mean() for k in range(paras['k_fold'])]
     mean_f1 = [np.array(f1[k]).mean() for k in range(paras['k_fold'])]
     mean_auc = [np.array(auc[k]).mean() for k in range(paras['k_fold'])]
-
+    
     output(loss, mean_acc, mean_precision, mean_recall, mean_f1, mean_auc)

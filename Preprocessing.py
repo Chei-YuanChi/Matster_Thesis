@@ -170,7 +170,7 @@ def data_preprocessing(X_dir, Y_dir, args, seed):
     
     std_data, scaler = Normalize(drug_ori, idx_train, args.N_type)
     Y = {'train' :  {'pro' : drug_pro.iloc[idx_train, :], 'ori' : drug_ori.iloc[idx_train, :], 'std' : std_data.iloc[idx_train, :]},  
-         'test' : {'pro' : drug_pro.iloc[idx_test, :], 'ori' : drug_ori.iloc[idx_test, :]}, 'std' : std_data.iloc[idx_test, :]} # std : Normalize data
+         'test' : {'pro' : drug_pro.iloc[idx_test, :], 'ori' : drug_ori.iloc[idx_test, :], 'std' : std_data.iloc[idx_test, :]}} # std : Normalize data
     
     return X, Y, Y['train']['ori'].describe().T['50%'], Y['train']['ori'].describe().T['std'], scaler
 

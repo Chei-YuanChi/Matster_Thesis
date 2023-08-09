@@ -16,6 +16,7 @@
 from Preprocessing import data_preprocessing
 from Train import train_model
 from Test import test_model
+from get_weight import get_omics_weight, get_gene_weight
 import torch
 import random
 
@@ -40,6 +41,9 @@ parser.add_argument('--epochs', default = 200, type = int, help = 'Number of tot
 parser.add_argument('--batch_size', default = 2, type = int, help = 'mini-batch size (default: 2)')
 parser.add_argument('--k_fold', default = 3, type = int, help = 'number of fold validation (default : 3)')
 parser.add_argument('--train', default = 'True', type = str2bool, help = 'train or test')
+parser.add_argument('--get_weight', default = 'None', type = str, help = 'get weight (None, omics, gene)')
+parser.add_argument('--cell_line', default = -1, type = int, help = 'number of cell line in test dataset')
+parser.add_argument('--drug_index', default = 0, type = int, help = 'drug index in case study')
 
 # Dataset 
 parser.add_argument('--Methylation', default = 'True', type = str2bool, help = 'using methylation dataset or not (default : True)')
@@ -117,7 +121,11 @@ def main():
         'k' : args.k, 
         'z_dim' : args.z_dim, 
         'channel' : args.channel, 
-        'attention' : args.attention
+        'attention' : args.attention,
+        'get_weight' : args.get_weight, 
+        'dataset' : dataset, 
+        'cell_line' : args.cell_line, 
+        'drug_index' : args.drug_index
     }
     
     paras['name'] = '('
@@ -152,7 +160,12 @@ def main():
     if args.train:
         train_model(x_train, Y['train'], paras)
     else:
-        test_model(x_test, Y['test'], paras)
+        if args.get_weight == 'None':
+            test_model(x_test, Y['test'], paras)
+        elif args.get_weight == 'omics':
+            get_omics_weight(x_test, Y['test'], paras)
+        elif args.get_weight == 'gene':
+            get_gene_weight(x_test, Y['test'], paras)
     
 if __name__ == '__main__':
     main()
