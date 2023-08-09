@@ -1,3 +1,9 @@
+![1](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/eeb04419-7968-40b6-a2b9-4c49ed8f239c)
+![2](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/6ce6cf17-0069-42b5-847d-0dece7b06bf9)
+![Uploading 3.png…]()
+![345](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/c2f3cff9-3e51-488b-a184-061a3e8b76d2)
+![6](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/3d79fbf5-1809-46e8-a08a-e30014b96e19)
+![7](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/09cceddd-564b-42c5-ad94-6e1672e50078)
 
 
 # A latent alignment-based multi-omics approach to predict drug response
@@ -21,7 +27,7 @@ python Main.py --train True --epochs 100 ...
 python Main.py --train True --epochs 100 ...
 ```
 
-* 備註：完整資料在我的雲端中，使用git clone沒有dataset以及weight
+* 備註：完整資料在我的雲端跟NAS中，使用git clone沒有dataset以及weight
 
 # Dataset - Depmap
 ## [Custom donwload](https://depmap.org/portal/download/custom/)
@@ -62,6 +68,9 @@ python Main.py --train True --epochs 100 ...
 |   channel   |               每一個 attention map 的 hidden dimension               |      2       |
 | origin_data |                    是否使用尚未經過前處理的資料集                    |    False     |
 |    train    |                            是否為訓練階段                            |     True     |
+| get_weight  |          test中，選擇是否儲存對某藥物各個基因或omics的權重           |    None     |
+|  cell_line  |                   選擇case study的cell line index                    |     -1      |
+| drug_index  |                      選擇case study的藥物index                       |      0      |
 
 
 # Preprocessing
@@ -349,3 +358,40 @@ class Regression(nn.Module):
     def forward(self, x):
         return self.reg(x)
 ```
+# Case Study
+1. 單純 test
+```
+python Main.py --train False
+```
+
+2. 獲取各個'體學'資料在預測上的重要程度
+```
+python Main.py --train False --get_weight omics
+```
+
+3. 獲取某個cell line的'基因'對於個別藥物在預測上的重要程度
+```
+python Main.py --train False --get_weight omics --cell_line 25(cell line index) --drug_index 26(drug index)
+```
+
+* 當獲取完某個cell line的 '基因' 對於個別藥物在預測上的重要程度後，需要取前2000個基因放入到[reactome](https://reactome.org/)的網站中進行分析流程如下:
+
+![1](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/19777b76-bb67-49fc-9653-cebe258ecfa0)
+
+![2](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/b9381766-f4f8-4f3a-8ad4-24ca394de3b0)
+
+* 4 的部分輸入前2000個基因名稱
+
+![345](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/fbbe754d-20e1-4b35-8d01-d8d5b88f9ad1)
+
+![6](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/d2d62e0c-2e74-4ad8-9721-d661c4d06ae3)
+
+![7](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/d6f54a09-f821-41df-981f-e2fc0935af5f)
+
+* 8 輸入藥物名稱 (範例：panobinostat)
+
+![8](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/473ed234-4456-494e-95b3-9c09a7929675)
+
+![9](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/cd62456a-5e06-4af0-82bc-e77491411a1c)
+
+
