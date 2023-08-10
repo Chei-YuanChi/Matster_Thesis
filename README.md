@@ -1,6 +1,5 @@
 # A latent alignment-based multi-omics approach to predict drug response
-![image](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/22c84fc7-7275-4b0e-9080-3437f0edc210)
-
+![image](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/eca94730-6e51-4697-bbc0-8052327bb996)
 
 # Operation method
 1. 進入到 script.sh檔案
@@ -386,4 +385,8 @@ python Main.py --train False --get_weight omics --cell_line 25(cell line index) 
 
 ![9](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/cd62456a-5e06-4af0-82bc-e77491411a1c)
 
+![10](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/cb62c0fd-4a45-46c6-930b-c13cae33e5ba)
 
+![11-12](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/63359561-d144-44ba-b096-7618a87d50cf)
+
+13. 下載下來後的檔案找到對應的 pathway name 以及 Entities pValue 即可進行分析
