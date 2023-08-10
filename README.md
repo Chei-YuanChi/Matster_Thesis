@@ -386,7 +386,7 @@ python Main.py --train False --get_weight omics --cell_line 25(cell line index) 
 
 ![2](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/b9381766-f4f8-4f3a-8ad4-24ca394de3b0)
 
-* 4. 的部分輸入前2000個基因名稱
+4. 的部分輸入前2000個基因名稱
 
 ![345](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/fbbe754d-20e1-4b35-8d01-d8d5b88f9ad1)
 
@@ -394,15 +394,15 @@ python Main.py --train False --get_weight omics --cell_line 25(cell line index) 
 
 ![7](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/d6f54a09-f821-41df-981f-e2fc0935af5f)
 
-* 8. 輸入藥物名稱 (範例：panobinostat)
+8. 輸入藥物名稱 (範例：panobinostat)
 
 ![8](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/473ed234-4456-494e-95b3-9c09a7929675)
 
 ![9](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/cd62456a-5e06-4af0-82bc-e77491411a1c)
 
-* 10. 可以看到對應的 pathway 全貌
+10. 可以看到對應的 pathway 全貌
 ![10](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/cb62c0fd-4a45-46c6-930b-c13cae33e5ba)
 
 ![11-12](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/63359561-d144-44ba-b096-7618a87d50cf)
 
-* 13. 下載下來後的檔案找到對應的 pathway name 以及 Entities pValue 即可進行分析
+13. 下載下來後的檔案找到對應的 pathway name 以及 Entities pValue 即可進行分析
