@@ -190,34 +190,36 @@ def train_model(X, Y, paras):
             val_loss, val_acc, val_precision, val_recall, val_f1, val_auc = val_model(tensor_val_X, tensor_val_Y, model, reg, paras)
             if min_loss > val_loss:
                 min_loss = val_loss
-                torch.save(model, dir_name + '/LAMOI/hlayer({})_thres({})_epoch({})_bs({})_lr({})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
-                    paras['h_layer'], 
-                    paras['thres'], 
-                    paras['epochs'], 
-                    paras['batch_size'], 
-                    paras['lr'], 
-                    paras['dropout'], 
-                    paras['temperature'],
-                    paras['Weight'],  
-                    paras['z_dim'], 
-                    paras['k'],
-                    paras['channel'],
-                    paras['attention']
-                ))
-                torch.save(reg, dir_name + '/reg/hlayer({})_thres({})_epoch({})_bs({})_lr({})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
-                    paras['h_layer'], 
-                    paras['thres'], 
-                    paras['epochs'], 
-                    paras['batch_size'], 
-                    paras['lr'], 
-                    paras['dropout'], 
-                    paras['temperature'],
-                    paras['Weight'],  
-                    paras['z_dim'], 
-                    paras['k'],
-                    paras['channel'],
-                    paras['attention']
-                ))
+                torch.save(model, dir_name + '/LAMOI/hlayer({})_thres({})_epoch({})_bs({})_lr(model_{}, reg_{})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
+                        paras['h_layer'], 
+                        paras['thres'], 
+                        paras['epochs'], 
+                        paras['batch_size'], 
+                        paras['lr']['model'], 
+                        paras['lr']['reg'], 
+                        paras['dropout'], 
+                        paras['temperature'],
+                        paras['Weight'],  
+                        paras['z_dim'], 
+                        paras['k'],
+                        paras['channel'],
+                        paras['attention']
+                    ))
+                torch.save(reg, dir_name + '/reg/hlayer({})_thres({})_epoch({})_bs({})_lr(model_{}, reg_{})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
+                        paras['h_layer'], 
+                        paras['thres'], 
+                        paras['epochs'], 
+                        paras['batch_size'], 
+                        paras['lr']['model'], 
+                        paras['lr']['reg'], 
+                        paras['dropout'], 
+                        paras['temperature'],
+                        paras['Weight'],  
+                        paras['z_dim'], 
+                        paras['k'],
+                        paras['channel'],
+                        paras['attention']
+                    ))
             wandb.log({
                 'train_loss' : train_loss,
                 'train_acc' : acc,

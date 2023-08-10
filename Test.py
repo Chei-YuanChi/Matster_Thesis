@@ -77,12 +77,13 @@ def test_model(x, y, paras):
         else:
             dir_name = './model/{}/{}/{}fold/fold_{}'.format(paras['name'], paras['method'], paras['k_fold'], k)
             
-        model = torch.load(dir_name + '/LAMOI/hlayer({})_thres({})_epoch({})_bs({})_lr({})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
+        model = torch.load(dir_name + '/LAMOI/hlayer({})_thres({})_epoch({})_bs({})_lr(model_{}, reg_{})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
                         paras['h_layer'], 
                         paras['thres'], 
                         paras['epochs'], 
                         paras['batch_size'], 
-                        paras['lr'], 
+                        paras['lr']['model'], 
+                        paras['lr']['reg'], 
                         paras['dropout'], 
                         paras['temperature'],
                         paras['Weight'],  
@@ -91,12 +92,13 @@ def test_model(x, y, paras):
                         paras['channel'],
                         paras['attention']
                     ))
-        reg = torch.load(dir_name + '/reg/hlayer({})_thres({})_epoch({})_bs({})_lr({})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
+        reg = torch.load(dir_name + '/reg/hlayer({})_thres({})_epoch({})_bs({})_lr(model_{}, reg_{})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
                         paras['h_layer'], 
                         paras['thres'], 
                         paras['epochs'], 
                         paras['batch_size'], 
-                        paras['lr'], 
+                        paras['lr']['model'], 
+                        paras['lr']['reg'], 
                         paras['dropout'], 
                         paras['temperature'],
                         paras['Weight'],  
