@@ -43,9 +43,9 @@ def train_model(X, Y, paras):
             val_idx = all_drugs_index[int(len(all_drugs_index) / paras['k_fold'] * k): int(len(all_drugs_index) / paras['k_fold'] * (k + 1))]
         
         if paras['drug_std']:
-            dir_name = './model/{}/{}/drug_std/{}fold/fold:{}'.format(paras['name'], paras['method'], paras['k_fold'], k)
+            dir_name = './model/{}/{}/drug_std/{}fold/fold_{}'.format(paras['name'], paras['method'], paras['k_fold'], k)
         else:
-            dir_name = './model/{}/{}/{}fold/fold:{}'.format(paras['name'], paras['method'], paras['k_fold'], k)
+            dir_name = './model/{}/{}/{}fold/fold_{}'.format(paras['name'], paras['method'], paras['k_fold'], k)
         if not os.path.exists(dir_name):
             os.makedirs(dir_name + '/LAMOI/')
             os.makedirs(dir_name + '/reg/')
@@ -81,24 +81,24 @@ def train_model(X, Y, paras):
         trainLoader = torch.utils.data.DataLoader(dataset = trainDataset, batch_size = paras['batch_size'], shuffle = False, num_workers = 0)
         
         loss_MSE = nn.MSELoss()
-#         e_name = "thres({})_epoch({})_bs({})_lr({})_dropout({})_zdim({})_tem({})_k({})_ch({})_fold({})".format(paras['thres'],
-#                                                                                                                paras['epochs'],
-#                                                                                                                paras['batch_size'], 
-#                                                                                                                paras['lr'],
-#                                                                                                                paras['dropout'],  
-#                                                                                                                paras['z_dim'], 
-#                                                                                                                paras['temperature'],
-#                                                                                                                paras['k'], 
-#                                                                                                                paras['channel'], k)
-#         group_name = "dataset({})_method({})_weight({})_attn({})_std({})".format(
-#             paras['name'], 
-#             paras['method'], 
-#             paras['Weight'],
-#             paras['attention'],
-#             paras['drug_std'])
+        e_name = "thres({})_epoch({})_bs({})_lr({})_dropout({})_zdim({})_tem({})_k({})_ch({})_fold({})".format(paras['thres'],
+                                                                                                               paras['epochs'],
+                                                                                                               paras['batch_size'], 
+                                                                                                               paras['lr'],
+                                                                                                               paras['dropout'],  
+                                                                                                               paras['z_dim'], 
+                                                                                                               paras['temperature'],
+                                                                                                               paras['k'], 
+                                                                                                               paras['channel'], k)
+        group_name = "dataset({})_method({})_weight({})_attn({})_std({})".format(
+            paras['name'], 
+            paras['method'], 
+            paras['Weight'],
+            paras['attention'],
+            paras['drug_std'])
         
-#         wandb.login(key = "3c35754d4df7f0ecbaa130aaa78ad8060bd3822d")
-#         wandb.init(project = "final_test", group = group_name, name = e_name, entity = 'taurus')
+        wandb.login(key = "3c35754d4df7f0ecbaa130aaa78ad8060bd3822d")
+        wandb.init(project = "final_test", group = group_name, name = e_name, entity = 'taurus')
 
         min_loss = 1000
         for epoch in range(paras['epochs']):
@@ -188,47 +188,47 @@ def train_model(X, Y, paras):
                 
             train_loss = np.average(train_loss)
             val_loss, val_acc, val_precision, val_recall, val_f1, val_auc = val_model(tensor_val_X, tensor_val_Y, model, reg, paras)
-#             if min_loss > val_loss:
-#                 min_loss = val_loss
-#                 torch.save(model, dir_name + '/LAMOI/hlayer({})_thres({})_epoch({})_bs({})_lr({})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
-#                     paras['h_layer'], 
-#                     paras['thres'], 
-#                     paras['epochs'], 
-#                     paras['batch_size'], 
-#                     paras['lr'], 
-#                     paras['dropout'], 
-#                     paras['temperature'],
-#                     paras['Weight'],  
-#                     paras['z_dim'], 
-#                     paras['k'],
-#                     paras['channel'],
-#                     paras['attention']
-#                 ))
-#                 torch.save(reg, dir_name + '/reg/hlayer({})_thres({})_epoch({})_bs({})_lr({})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
-#                     paras['h_layer'], 
-#                     paras['thres'], 
-#                     paras['epochs'], 
-#                     paras['batch_size'], 
-#                     paras['lr'], 
-#                     paras['dropout'], 
-#                     paras['temperature'],
-#                     paras['Weight'],  
-#                     paras['z_dim'], 
-#                     paras['k'],
-#                     paras['channel'],
-#                     paras['attention']
-#                 ))
-#             wandb.log({
-#                 'train_loss' : train_loss,
-#                 'train_acc' : acc,
-#                 'val_loss' : val_loss,
-#                 'val_acc' : val_acc.mean(),
-#                 'val_precision' : val_precision.mean(),
-#                 'val_recall' : val_recall.mean(),
-#                 'val_f1' : val_f1.mean(),
-#                 'val_auc' : val_auc
-#             })
-#         wandb.finish()
+            if min_loss > val_loss:
+                min_loss = val_loss
+                torch.save(model, dir_name + '/LAMOI/hlayer({})_thres({})_epoch({})_bs({})_lr({})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
+                    paras['h_layer'], 
+                    paras['thres'], 
+                    paras['epochs'], 
+                    paras['batch_size'], 
+                    paras['lr'], 
+                    paras['dropout'], 
+                    paras['temperature'],
+                    paras['Weight'],  
+                    paras['z_dim'], 
+                    paras['k'],
+                    paras['channel'],
+                    paras['attention']
+                ))
+                torch.save(reg, dir_name + '/reg/hlayer({})_thres({})_epoch({})_bs({})_lr({})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
+                    paras['h_layer'], 
+                    paras['thres'], 
+                    paras['epochs'], 
+                    paras['batch_size'], 
+                    paras['lr'], 
+                    paras['dropout'], 
+                    paras['temperature'],
+                    paras['Weight'],  
+                    paras['z_dim'], 
+                    paras['k'],
+                    paras['channel'],
+                    paras['attention']
+                ))
+            wandb.log({
+                'train_loss' : train_loss,
+                'train_acc' : acc,
+                'val_loss' : val_loss,
+                'val_acc' : val_acc.mean(),
+                'val_precision' : val_precision.mean(),
+                'val_recall' : val_recall.mean(),
+                'val_f1' : val_f1.mean(),
+                'val_auc' : val_auc
+            })
+        wandb.finish()
 
 def val_model(x, y, model, reg, paras):
     loss_MSE = nn.MSELoss()

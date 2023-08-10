@@ -73,9 +73,9 @@ def test_model(x, y, paras):
         indim = [x[i].shape[1] for i in range(len(x))]
         
         if paras['drug_std']:
-            dir_name = './model/{}/{}/drug_std/{}fold/fold:{}'.format(paras['name'], paras['method'], paras['k_fold'], k)
+            dir_name = './model/{}/{}/drug_std/{}fold/fold_{}'.format(paras['name'], paras['method'], paras['k_fold'], k)
         else:
-            dir_name = './model/{}/{}/{}fold/fold:{}'.format(paras['name'], paras['method'], paras['k_fold'], k)
+            dir_name = './model/{}/{}/{}fold/fold_{}'.format(paras['name'], paras['method'], paras['k_fold'], k)
             
         model = torch.load(dir_name + '/LAMOI/hlayer({})_thres({})_epoch({})_bs({})_lr({})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
                         paras['h_layer'], 

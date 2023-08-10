@@ -9,10 +9,10 @@
 
 
 # test 
-# python Main.py --train False
+python Main.py --train False
 
 # test (get omics weight)
 # python Main.py --train False --get_weight omics
 
 # test (get gene weight)
-python Main.py --train False --get_weight gene --cell_line 25 --drug_index 26
+# python Main.py --train False --get_weight gene --cell_line 25 --drug_index 26

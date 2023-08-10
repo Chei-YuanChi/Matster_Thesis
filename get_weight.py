@@ -165,9 +165,9 @@ def get_feature_importance_for_all(data, drug_index):
 # get the weight of individual omics
 def get_omics_weight(x, y, paras):
     if paras['drug_std']:
-        dir_name = './model/{}/{}/drug_std/{}fold/fold:{}'.format(paras['name'], paras['method'], paras['k_fold'], 0)
+        dir_name = './model/{}/{}/drug_std/{}fold/fold_{}'.format(paras['name'], paras['method'], paras['k_fold'], 0)
     else:
-        dir_name = './model/{}/{}/{}fold/fold:{}'.format(paras['name'], paras['method'], paras['k_fold'], 0)
+        dir_name = './model/{}/{}/{}fold/fold_{}'.format(paras['name'], paras['method'], paras['k_fold'], 0)
 
     model = torch.load(dir_name + '/LAMOI/hlayer({})_thres({})_epoch({})_bs({})_lr({})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
                         paras['h_layer'], 
@@ -214,9 +214,9 @@ def get_omics_weight(x, y, paras):
 # get the weight of individual genes
 def get_gene_weight(x, y, paras):
     if paras['drug_std']:
-        dir_name = './model/{}/{}/drug_std/{}fold/fold:{}'.format(paras['name'], paras['method'], paras['k_fold'], 0)
+        dir_name = './model/{}/{}/drug_std/{}fold/fold_{}'.format(paras['name'], paras['method'], paras['k_fold'], 0)
     else:
-        dir_name = './model/{}/{}/{}fold/fold:{}'.format(paras['name'], paras['method'], paras['k_fold'], 0)
+        dir_name = './model/{}/{}/{}fold/fold_{}'.format(paras['name'], paras['method'], paras['k_fold'], 0)
 
     model = torch.load(dir_name + '/LAMOI/hlayer({})_thres({})_epoch({})_bs({})_lr({})_dropout({})_tem({})_weight({})_zdim({})_k({})_ch({})_attn({}).pth'.format(
                         paras['h_layer'], 
