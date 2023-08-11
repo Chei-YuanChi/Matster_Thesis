@@ -17,6 +17,11 @@ cd Matster_Thesis/
 pip install -r requirements.txt
 ```
 
+在 linu環境下(非 container) 需要修改requirements的torch版本為以下
+```
+torch==1.12.1+cu116
+```
+
 4. 進入到 script.sh 檔案
 輸入需要調整的 argument
 格式如下
