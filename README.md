@@ -9,14 +9,14 @@ git clone https://github.com/Chei-YuanChi/Matster_Thesis.git
 
 > 2. 進到執行資料夾
 
-Enter the folder.
+Change directory
 ```
 cd Matster_Thesis/
 ```
 
 > 3. 安裝 requirements
 
-Install requirements.
+Install requirements
 ```
 pip install -r requirements.txt
 ```
@@ -41,17 +41,17 @@ python Main.py --train True --epochs 100 ...
 
 > 5. 回到 terminal 輸入以下指令即可 (方便執行多次)
 
-Enter the instruction below in the terminal(for convenient multiple executions).
+Go back to the terminal and enter the following command (convenient to execute multiple times)
 ```
 ./script.sh
 ```
 > * 備註：需先至 NAS 載 dataset 和 model 下來
 
-Note: You need to download the dataset and model from the NAS first.
+Note: The user needs to download the dataset and model first.
 
 > 6. 或是直接在 terminal 輸入以下指令也可
 
-Alternatively, you can directly enter the following command in the terminal.
+Or the user can enter the following command directly in the terminal
 ```
 python Main.py --train True --epochs 100 ...
 ```
@@ -71,7 +71,7 @@ python Main.py --train True --epochs 100 ...
 > |    Name     |                                 help                                 |   default    |
 > |:-----------:|:--------------------------------------------------------------------:|:------------:|
 > |   epochs    |                             模型訓練次數                              |     200      |
-> |  model_lr   |                  feature extractor 的 learning rate                  |     1e-6     |
+> |  model_lr   |                  feature extractor 的 learning rate <br> test                 |     1e-6     |
 > |   reg_lr    |                  regression model 的 learning rate                   |     1e-5     |
 > |   dropout   |                  feature extractor 的 Dropout rate                   |     0.2      |
 > | batch_size  |                     每一次訓練時，放入的樣本數量                       |      2       |
