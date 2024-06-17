@@ -2,56 +2,40 @@
 ![image](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/eca94730-6e51-4697-bbc0-8052327bb996)
 
 # Operation method
-> 1. Clone from Github
+ 1. Clone from Github
 ```
 git clone https://github.com/Chei-YuanChi/Matster_Thesis.git
 ```
 
-> 2. 進到執行資料夾
-
-Change directory
+ 2. Change directory
 ```
 cd Matster_Thesis/
 ```
 
-> 3. 安裝 requirements
-
-Install requirements
+ 3. Install requirements
 ```
 pip install -r requirements.txt
 ```
-
-> 在 linu環境下(非 container) 需要修改requirements的torch版本為以下
 
 In Linux (non-container), the torch version that needs to modify the requirements is as follows:
 ```
 torch==1.12.1+cu116
 ```
 
-> 4. 進入到 script.sh 檔案
-> 輸入需要調整的 argument
-> 格式如下
-
-Enter the file named `script.sh`.
+ 4. Enter the file named `script.sh`.
 Fill in the needed arguments.
 The format of the instruction is as follows:
 ```
 python Main.py --train True --epochs 100 ...
 ```
 
-> 5. 回到 terminal 輸入以下指令即可 (方便執行多次)
-
-Go back to the terminal and enter the following command (convenient to execute multiple times)
+ 5. Go back to the terminal and enter the following command (convenient to execute multiple times)
 ```
 ./script.sh
 ```
-> * 備註：需先至 NAS 載 dataset 和 model 下來
+* Note: The user needs to download the dataset and model first.
 
-Note: The user needs to download the dataset and model first.
-
-> 6. 或是直接在 terminal 輸入以下指令也可
-
-Or the user can enter the following command directly in the terminal
+6. Or the user can enter the following command directly in the terminal
 ```
 python Main.py --train True --epochs 100 ...
 ```
@@ -68,101 +52,41 @@ python Main.py --train True --epochs 100 ...
 # Main
 ## **Arguments**
 
-> |    Name     |                                 help                                 |   default    |
-> |:-----------:|:--------------------------------------------------------------------:|:------------:|
-> |   epochs    |                             模型訓練次數                              |     200      |
-> |  model_lr   |                  feature extractor 的 learning rate <br> test                 |     1e-6     |
-> |   reg_lr    |                  regression model 的 learning rate                   |     1e-5     |
-> |   dropout   |                  feature extractor 的 Dropout rate                   |     0.2      |
-> | batch_size  |                     每一次訓練時，放入的樣本數量                       |      2       |
-> |   N_type    |                  資料前處理時，使用的 normalization                    | 1 (Min-max) |
-> |    seed     |                   切割資料集時所使用的random seed                     |      42      |
-> |   k_fold    |                     k-fold validation 的切割數量                     |      3       |
-> | Methylation |                        使用 Methylation 資料集與否                         |     True     |
-> |  Mutation   |                          使用 Mutation 資料集與否                          |     True     |
-> | Expression  |                         使用 Expression 資料集與否                         |     True     |
-> |     CNV     |                            使用 CNV 資料集與否                             |     True     |
-> |  drug_std   |                    預測時是否為預測 0 ~ 1 間的值                     |    False     |
-> |   method    |                  藥物反應資料集使用的Normalization                   |     None     |
-> |  attention  |                       是否使用attention module                       |     True     |
-> |    thres    |                            過濾缺失值閥值                            |     0.3      |
-> |   Weight    |                     latent alignment loss 的權重                     |     1.0      |
-> | temperature | 計算兩個特徵在 latent space 上的樣本相似度時，調整其值域範圍的超參數 |     1.0      |
-> |  max_hdim   |               feature extractor 第一層最大的神經元數量               |     4096     |
-> |   h_layer   |                       feature extractor 的層數                       |      2       |
-> |      k      |                 affinity matrix 的 hidden dimension                  |      40      |
-> |    z_dim    |                feature extractor 的 hidden dimension                 |     1024     |
-> |   channel   |               每一個 attention map 的 hidden dimension               |      2       |
-> | origin_data |                    是否使用尚未經過前處理的資料集                    |    False     |
-> |    train    |                            是否為訓練階段                            |     True     |
-> | get_weight  |          test中，選擇是否儲存對某藥物各個基因或omics的權重           |    None     |
-> |  cell_line  |                   選擇case study的cell line index                    |     -1      |
-> | drug_index  |                      選擇case study的藥物index                       |      0      |
+> |    Name     |                                 help                                               |   default    |
+> |:-----------:|:----------------------------------------------------------------------------------:|:------------:|
+> |   epochs    |    Model training times                                           |     200      |
+> |  model_lr   |    learning rate of feature extractor     |     1e-6     |
+> |   reg_lr    |     learning rate of regression model       |     1e-5     |
+> |   dropout   |     Dropout rate of feature extractor      |     0.2      |
+> | batch_size  |During each training, the number of samples put in   |      2       |
+> |   N_type    |Normalization used during data preprocessing  | 1 (Min-max) |
+> |    seed     |The random seed used when cutting the data set  |      42      |
+> |   k_fold    |Determine k to group dataset into k parts          |      3       |
+> | Methylation |Using Methylation dataset or not                    |     True     |
+> |  Mutation   |Using Mutation dataset or not                        |     True     |
+> | Expression  |Using Expression dataset or not                     |     True     |
+> |     CNV     |           Using CNV dataset or not               |     True     |
+> |  drug_std   |Whether to predict a value between 0 and 1 when predicting   |    False     |
+> |   method    |           Normalization used in drug response dataset             |     None     |
+> |  attention  |         Using attention module or not           |     True     |
+> |    thres    |Threshold for filter missing value           |     0.3      |
+> |   Weight    |Weight of latent alignment loss |     1.0      |
+> | temperature |When calculating the sample similarity of two features on latent space, adjust the hyperparameters of their value ranges. |     1.0      |
+> |  max_hdim   |  The maximal number of neurons in the first layer in feature extractor    |     4096     |
+> |   h_layer   |  Layer number of feature extractor        |      2       |
+> |      k      |     hidden dimension of affinity matrix         |      40      |
+> |    z_dim    |  hidden dimension of feature extractor     |     1024     |
+> |   channel   |     hidden dimension in every attention map          |      2       |
+> | origin_data |        Whether to use data sets that have not been pre-processed    |    False     |
+> |    train    |          Is it a training phase?              |     True     |
+> | get_weight  |  In test, choose whether to store the weight of each gene or omics of a drug.     |    None     |
+> |  cell_line  |      cell line index of case study            |     -1      |
+> | drug_index  |       Drug index of case study            |      0      |
 
-`epochs`: Number of model training iterations
+ # Preprocessing
+ ## **Process**
 
-`model_lr`: Learning rate of the feature extractor
-
-`reg_lr`: Learning rate of the regression model
-
-`dropout`: Dropout rate of the feature extractor
-
-`batch_size`: Number of samples used in each training iteration
-
-`N_type`: Normalization used during data preprocessing
-
-`seed`: Random seed used for splitting the dataset
-
-`k_fold`: Number of splits for k-fold validation
-
-`Methylation`: Use Methylation dataset or not
-
-`Mutation`: Use Mutation dataset or not
-
-`Expression`: Use Expression dataset or not
-
-`CNV`: Use CNV dataset or not
-
-`drug_std`: Whether to predict values between 0 and 1
-
-`method`: Normalization used for the drug response dataset
-
-`attention`: Whether to use the attention module
-
-`thres`: Threshold for filtering missing values
-
-`weight`: Weight of latent alignment loss
-
-`temperature`: Hyperparameter for adjusting the value range when calculating sample similarity in latent space 
-for two features
-
-`max_hdim`: Maximum number of neurons in the first layer of the feature extractor
-
-`h_layer`: Number of layers in the feature extractor
-
-`k`: Hidden dimension of the affinity matrix
-
-`z_dim`: Hidden dimension of the feature extractor
-
-`channel`: Hidden dimension of each attention map
-
-`origin_data`: Whether to use the original dataset without preprocessing
-
-`train`: Whether it is the training phase
-
-`get_weight`: In testing, choose whether to save the weights of each gene or omics for a certain drug
-
-`cell_line`: Select the cell line index for the case study
-
-`drug_index`: Select the drug index for the case study
-
-> # Preprocessing
-> ## **流程**
-
-## **Preprocessing Process**
-> 1. 找出所有資料集中皆存在的樣本
-
-Identify samples that exist in all datasets
+1. Identify samples that exist in all datasets
 ``` python = 
 def Overlap_samples(data_omics, data_drug):
     """
@@ -187,9 +111,7 @@ def Overlap_samples(data_omics, data_drug):
     return data_omics, data_drug
 ```
 
-> 2. 過濾 30% 缺失值以上資料
-
-Filter out data with more than 30% missing values
+ 2.Filter out data with more than 30% missing values
 
 ``` python = 
 def Filter_data(data, thres):
@@ -204,9 +126,7 @@ def Filter_data(data, thres):
             data_copy = data_copy.drop([feature], axis = 1)
     return data_copy
 ```
-> 3. 刪除全為同一個值的特徵
-
-Delete features that have the same value across all samples
+3. Delete features that have the same value across all samples
 
 ``` python = 
 def Delete(data, thres):
@@ -221,17 +141,13 @@ def Delete(data, thres):
     return data.drop(labels = columns, axis = 1) 
 ```
 
-> 4. 缺失值補用各特徵平均值補值
-
-Fill missing values with the mean of each feature
+ 4. Fill missing values with the mean of each feature
 
 ``` python =
 data_X = [data_X[i].fillna(data_X[i].mean()) for i in range(len(data_X))]
 ```
 
-> 5. 切分訓練與測試資料集
-
-Split the dataset into training and testing sets
+5. Split the dataset into training and testing sets
 
 ``` python = 
 # Split train & test data
@@ -239,9 +155,7 @@ Split the dataset into training and testing sets
     idx_train, idx_test, _, _ = train_test_split(index, data_Y, test_size = 0.2, random_state = seed) # The ratio of training and testing is 8:2
 ```
 
-> 6. 處理藥物反應濃度資料集之缺失值
-
-Handle missing values in the drug response concentration dataset
+ 6. Handle missing values in the drug response concentration dataset
 
 ``` python = 
 def Drug_preprocessing(x, drug, method, idx_train):
@@ -274,9 +188,7 @@ def Drug_preprocessing(x, drug, method, idx_train):
     return drug_pre, drug
 ```
 
-> 7. 對資料進行 Normalize
-
-Normalize the data
+7. Normalize the data
 
 ``` python = 
 def Normalize(data, idx_train, N_type):
@@ -339,13 +251,10 @@ def data_preprocessing(X_dir, Y_dir, args, seed):
 
 
 # Model
-> ## **流程**
+## **Process**
 
-## **Model Process**
 
-> 1. 利用不同的 feature extractor 來提取各個體學的重要特徵
-
-Use different feature extractors to extract important features from each omics dataset
+1. Use different feature extractors to extract important features from each omics dataset
 
 ``` python =
 class Encoder(nn.Module):
@@ -373,9 +282,7 @@ class Encoder(nn.Module):
         encode = self.encoder(x)
         return encode
 ```
-> 2. 使用 latent alignment 調整 feature extractor 使不同體學特徵在latent space上對齊
-
-Use latent alignment to adjust the feature extractor, aligning features from different omics in the latent space
+2. Use latent alignment to adjust the feature extractor, aligning features from different omics in the latent space
 
 ![image](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/d6d10a2c-03aa-431f-90d7-4eeb185d9b08)
 
@@ -406,9 +313,7 @@ def cal_LA_loss(embedding1, embedding2, temperature):
     return ((loss1 + loss2) / 2.0).mean()
 ```
 
-> 3. 學習不同體學資料間的關聯性資訊
-
-Learn the correlation information between different omics data
+3. Learn the correlation information between different omics data
 
 ![image](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/82196026-f1b8-4fc1-b0cf-8a5bd08fb70c)
 
@@ -443,9 +348,7 @@ for i in range(len(Att_encode)):
             concat_data = torch.cat((concat_data, Att_encode[i][j].reshape(-1, self.z_dim)), 1)
 ```
 
-> 4. 預測藥物反應濃度
-
-Predict drug response concentration
+4. Predict drug response concentration
 
 ![image](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/f46399f6-0dc3-4dcb-8931-efa9da0549c0)
 
@@ -473,41 +376,31 @@ class Regression(nn.Module):
         return self.reg(x)
 ```
 # Case Study
-> 1. 單純 test
-
-Conduct test
+ 1. Conduct test
 
 ```
 python Main.py --train False
 ```
 
-> 2. 獲取各個'體學'資料在預測上的重要程度
-
-Obtain the importance of each omics data in the prediction
+2. Obtain the importance of each omics data in the prediction
 
 ```
 python Main.py --train False --get_weight omics
 ```
 
-> 3. 獲取某個cell line的'基因'對於個別藥物在預測上的重要程度
-
-Obtain the importance of a specific cell line's genes for the prediction of individual drugs
+ 3. Obtain the importance of a specific cell line's genes for the prediction of individual drugs
 
 ```
 python Main.py --train False --get_weight omics --cell_line 25(cell line index) --drug_index 26(drug index)
 ```
 
-> * 當獲取完某個cell line的 '基因' 對於個別藥物在預測上的重要程度後，需要取前2000個基因放入到[reactome](https://reactome.org/)的網站中進行分析流程如下:
-
-After obtaining the importance of a specific cell line's genes for the prediction of individual drugs, the top 2000 genes need to be analyzed using the Reactome website. The process is as follows:
+ * After obtaining the importance of a specific cell line's genes for the prediction of individual drugs, the top 2000 genes need to be analyzed using the [reactome](https://reactome.org/) website. The process is as follows:
 
 ![1](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/19777b76-bb67-49fc-9653-cebe258ecfa0)
 
 ![2](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/b9381766-f4f8-4f3a-8ad4-24ca394de3b0)
 
-> 4. 的部分輸入前2000個基因名稱
-
-Enter the names of the top 2000 genes
+ 4.Enter the names of the top 2000 genes
 
 ![345](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/fbbe754d-20e1-4b35-8d01-d8d5b88f9ad1)
 
@@ -515,23 +408,17 @@ Enter the names of the top 2000 genes
 
 ![7](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/d6f54a09-f821-41df-981f-e2fc0935af5f)
 
-> 8. 輸入藥物名稱 (範例：panobinostat)
-
-Enter the drug name (example: panobinostat)
+ 8. Enter the drug name (example: panobinostat)
 
 ![8](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/473ed234-4456-494e-95b3-9c09a7929675)
 
 ![9](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/cd62456a-5e06-4af0-82bc-e77491411a1c)
 
-> 10. 可以看到對應的 pathway 全貌
-
-You can see the full view of the corresponding pathways
+10. You can see the full view of the corresponding pathways
 
 ![10](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/cb62c0fd-4a45-46c6-930b-c13cae33e5ba)
 
 ![11-12](https://github.com/Chei-YuanChi/Matster_Thesis/assets/87289035/63359561-d144-44ba-b096-7618a87d50cf)
 
-> 13. 下載下來後的檔案找到對應的 pathway name 以及 Entities pValue 即可進行分析
-
-After downloading the file, find the corresponding pathway name and Entities pValue to proceed with the analysis
+13. After downloading the file, find the corresponding pathway name and Entities pValue to proceed with the analysis
 
