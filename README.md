@@ -159,7 +159,7 @@ for two features
 > # Preprocessing
 > ## **流程**
 
-## **Process**
+## **Preprocessing Process**
 > 1. 找出所有資料集中皆存在的樣本
 
 Identify samples that exist in all datasets
@@ -341,7 +341,7 @@ def data_preprocessing(X_dir, Y_dir, args, seed):
 # Model
 > ## **流程**
 
-## **Process**
+## **Model Process**
 
 > 1. 利用不同的 feature extractor 來提取各個體學的重要特徵
 
